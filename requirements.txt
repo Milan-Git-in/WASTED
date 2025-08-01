@@ -2,5 +2,5 @@ django
 psycopg2-binary
 gunicorn
 supabase
-
+python-dotenv
 # Database Password: Bussin@Industries
