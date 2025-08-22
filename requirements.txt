@@ -6,5 +6,5 @@ python-dotenv
 pyjwt
 bcrypt
 python-dotenv
-
+django-cors-headers
 # Database Password: Bussin@Industries
