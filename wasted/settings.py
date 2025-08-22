@@ -26,7 +26,9 @@ SECRET_KEY = "django-insecure-&s+1jyl+&#@se^mn69(z((nqmo!z#hg6@^0__cyp!65j4+6-=l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wasted-uedh.onrender.com', '127.0.0.1', 'localhost',"*"]
+ALLOWED_HOSTS = ['wasted-uedh.onrender.com', '127.0.0.1', 'localhost',"*"
+                 "http://localhost:3000",
+                 ]
 
 
 
@@ -47,6 +49,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://eco-bid-mocha.vercel.app/",
+
 ]
 
 

@@ -24,7 +24,7 @@ urlpatterns = [
     path("register/", views.register),
     path("login/", views.login),
     path("availablelists/", views.available_lists),
-    path("listings/", views.list_items),
+    path("placebids/", views.list_items),
     path("bids/", views.get_bids),
-    path("placebids/", views.place_bids),
+    # path("/", views.place_bids),
 ]
