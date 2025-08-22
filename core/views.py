@@ -287,7 +287,7 @@ def place_bids(request):
         data = json.loads(request.body)
         amount = data.get("amount")
         email = data.get("email")
-        item_name = data.get("item")
+        item_name = data.get("itemName")
 
         if not all([amount, email, item_name]):
             return JsonResponse({"success": False, "error": "Missing required fields"}, status=400)
