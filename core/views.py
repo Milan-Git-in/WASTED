@@ -36,7 +36,7 @@ def register(request):
         data = json.loads(request.body)
         username = data.get("username")
         email = data.get("email")
-        password = data.get("password")
+        password = data.get("passwords")
 
         # Basic validation
         if not username or len(username) < 2:
