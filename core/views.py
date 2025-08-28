@@ -334,6 +334,7 @@ def place_bids(request):
             data = json.loads(request.body)
             name = data.get("name")
             company = data.get("company")
+            
             mobile_number = data.get("mobile_number")
             email = data.get("email")
             waste_type = data.get("waste_type")
