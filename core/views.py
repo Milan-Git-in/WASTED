@@ -350,4 +350,25 @@ def place_bids(request):
         except Exception as e:
             return JsonResponse({"success": False, "error": str(e)}, status=500)
 
-    
+@csrf_exempt
+@require_POST
+def member_registration_api(request):
+    try:
+        data = json.loads(request.body)
+        first_name = data.get("First_Name")
+        last_name = data.get("Last_Name")
+        email_id = data.get("Email_Id")
+        phone_number = data.get("Phone_Number")
+
+        # Basic validation
+        if not first_name or not last_name or not email_id or not phone_number:
+            return JsonResponse({"success": False, "error": "All fields are required."}, status=400)
+        if "@" not in email_id:
+            return JsonResponse({"success": False, "error": "Invalid email."}, status=400)
+
+        # You can save/process the data here
+        return JsonResponse({"success": True, "message": "Member registered successfully."})
+    except json.JSONDecodeError:
+        return JsonResponse({"success": False, "error": "Invalid JSON."}, status=400)
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=500)
