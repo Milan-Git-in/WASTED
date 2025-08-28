@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from dotenv import load_dotenv
 from supabase import create_client
 from .auth import hash_password, verify_password, generate_jwt
-
+from django.views.decorators.http import require_POST
 load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -243,8 +243,8 @@ def get_bids(request):
 
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=500)
-
-
+    
+    
 @csrf_exempt
 def available_lists(request):
     if request.method != "GET":
@@ -325,3 +325,28 @@ def place_bids(request):
         return JsonResponse({"success": False, "error": "Invalid JSON"}, status=400)
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=500)
+
+    # Contact Us API endpoint (top-level)
+    @csrf_exempt
+    @require_POST
+    def contact_us_api(request):
+        try:
+            data = json.loads(request.body)
+            name = data.get("name")
+            company = data.get("company")
+            mobile_number = data.get("mobile_number")
+            email = data.get("email")
+            waste_type = data.get("waste_type")
+            comment = data.get("comment")
+
+            if not waste_type:
+                return JsonResponse({"success": False, "error": "Waste_Type is required."}, status=400)
+
+            # You can save/process the data here
+            return JsonResponse({"success": True, "message": "Contact details received."})
+        except json.JSONDecodeError:
+            return JsonResponse({"success": False, "error": "Invalid JSON."}, status=400)
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)}, status=500)
+
+    

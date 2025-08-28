@@ -26,5 +26,6 @@ urlpatterns = [
     path("availablelists/", views.available_lists),
     path("placebids/", views.list_items),
     path("bids/", views.get_bids),
+    path("contact/", views.contact_us_api),
     # path("/", views.place_bids),
 ]
