@@ -326,7 +326,7 @@ def place_bids(request):
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=500)
 
-    # Contact Us API endpoint (top-level)
+    
     @csrf_exempt
     @require_POST
     def contact_us_api(request):
