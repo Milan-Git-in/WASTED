@@ -27,5 +27,6 @@ urlpatterns = [
     path("placebids/", views.list_items),
     path("bids/", views.get_bids),
     path("contact/", views.contact_us_api),
+    path("member-registration/", views.member_registration_api),
     # path("/", views.place_bids),
 ]
