@@ -26,7 +26,6 @@ urlpatterns = [
     path("availablelists/", views.available_lists),
     path("placebids/", views.list_items),
     path("bids/", views.get_bids),
-  
     path("member-registration/", views.member_registration_api),
     # path("/", views.place_bids),
 ]

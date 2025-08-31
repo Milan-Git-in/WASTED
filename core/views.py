@@ -327,7 +327,29 @@ def place_bids(request):
         return JsonResponse({"success": False, "error": str(e)}, status=500)
 
     
-    
+    @csrf_exempt
+    @require_POST
+    def contact_us_api(request):
+        try:
+            data = json.loads(request.body)
+            name = data.get("name")
+            company = data.get("company")
+            
+            mobile_number = data.get("mobile_number")
+            email = data.get("email")
+            waste_type = data.get("waste_type")
+            comment = data.get("comment")
+
+            if not waste_type:
+                return JsonResponse({"success": False, "error": "Waste_Type is required."}, status=400)
+
+            # You can save/process the data here
+            return JsonResponse({"success": True, "message": "Contact details received."})
+        except json.JSONDecodeError:
+            return JsonResponse({"success": False, "error": "Invalid JSON."}, status=400)
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)}, status=500)
+
 @csrf_exempt
 @require_POST
 def member_registration_api(request):
