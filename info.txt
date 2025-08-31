@@ -1,0 +1,21 @@
+saving data in supabase
+
+
+create a supabase client or borrow it from supabase.py since it has premade client
+
+once the client is created, we have two options 
+
+
+1. create a model and store in using that model 
+2. just use supabase.table("tablename").insert()
+
+
+option one will work everytime however option two will fail if the data table isnt already
+created
+
+however, id want u to use option 2 and tell me what table u want me to create since it reduces 
+work overhead for u.
+
+
+
+in option one, you will need to make migration and then run the supabase.table insert function

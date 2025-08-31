@@ -329,12 +329,11 @@ def place_bids(request):
     
 @csrf_exempt
 @require_POST
-def contact_us_api(request):
+def contact(request):
     try:
         data = json.loads(request.body)
         name = data.get("name")
         company = data.get("company")
-            
         mobile_number = data.get("mobile_number")
         email = data.get("email")
         waste_type = data.get("waste_type")
@@ -342,7 +341,14 @@ def contact_us_api(request):
 
         if not waste_type:
             return JsonResponse({"success": False, "error": "Waste_Type is required."}, status=400)
-
+        res = supabase.table("contact_us").insert({
+            "name": name,
+            "company": company,
+            "mobile_number": mobile_number,
+            "email": email,
+            "waste_type": waste_type,
+            "comment": comment
+        }).execute()
             # You can save/process the data here
         return JsonResponse({"success": True, "message": "Contact details received."})
     except json.JSONDecodeError:
@@ -365,10 +371,16 @@ def member_registration_api(request):
             return JsonResponse({"success": False, "error": "All fields are required."}, status=400)
         if "@" not in email_id:
             return JsonResponse({"success": False, "error": "Invalid email."}, status=400)
-
+        res = supabase.table("members").insert({
+            "first_name": first_name,
+            "last_name": last_name,
+            "email_id": email_id,
+            "phone_number": phone_number
+        }).execute()    
         # You can save/process the data here
         return JsonResponse({"success": True, "message": "Member registered successfully."})
     except json.JSONDecodeError:
         return JsonResponse({"success": False, "error": "Invalid JSON."}, status=400)
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=500)
+    
