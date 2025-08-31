@@ -27,6 +27,6 @@ urlpatterns = [
     path("placebids/", views.list_items),
     path("bids/", views.get_bids),
     path("member-registration/", views.member_registration_api),
-    path("contact/", views.contact),
+    path("supabase/member-registration/", views.member_registration_api),
     # path("/", views.place_bids),
 ]

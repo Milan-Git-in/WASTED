@@ -96,10 +96,6 @@ def login(request):
     except Exception as e:
         return JsonResponse({"success":False,"error": str(e)}, status=500)
 
-
-
-
-
 @csrf_exempt
 def list_items(request):
     if request.method != "POST":
@@ -361,10 +357,11 @@ def contact(request):
 def member_registration_api(request):
     try:
         data = json.loads(request.body)
-        first_name = data.get("First_Name")
-        last_name = data.get("Last_Name")
-        email_id = data.get("Email_Id")
-        phone_number = data.get("Phone_Number")
+        # Accept both camelCase and snake_case keys for flexibility
+        first_name = data.get("First_Name") or data.get("first_name")
+        last_name = data.get("Last_Name") or data.get("last_name")
+        email_id = data.get("Email_Id") or data.get("email_id")
+        phone_number = data.get("Phone_Number") or data.get("phone_number")
 
         # Basic validation
         if not first_name or not last_name or not email_id or not phone_number:
@@ -383,4 +380,3 @@ def member_registration_api(request):
         return JsonResponse({"success": False, "error": "Invalid JSON."}, status=400)
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=500)
-    
